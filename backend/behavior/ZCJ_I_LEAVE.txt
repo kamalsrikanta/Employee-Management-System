@@ -1,0 +1,25 @@
+managed implementation in class zbp_cj_i_leave unique;
+strict ( 2 );
+
+define behavior for ZCJ_I_LEAVE
+persistent table zcj_leave
+lock master
+authorization master ( instance )
+{
+    create ( authorization : global );
+    update;
+    delete;
+
+    action approve;
+    action reject;
+
+    mapping for zcj_leave
+    {
+        LeaveId    = leave_id;
+        EmployeeId = employee_id;
+        FromDate   = from_date;
+        ToDate     = to_date;
+        Reason     = reason;
+        Status     = status;
+    }
+}

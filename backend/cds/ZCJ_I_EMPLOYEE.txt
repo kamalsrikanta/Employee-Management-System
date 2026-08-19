@@ -1,0 +1,12 @@
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Employee Interface View'
+
+define root view entity ZCJ_I_EMPLOYEE
+  as select from zcj_employee
+{
+  key employee_id,
+      name,
+      email,
+      department,
+      joining_date
+}

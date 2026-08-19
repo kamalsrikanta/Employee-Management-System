@@ -1,0 +1,14 @@
+managed implementation in class zbp_cj_i_employee unique;
+strict ( 2 );
+
+define behavior for ZCJ_I_EMPLOYEE
+persistent table zcj_employee
+lock master
+authorization master ( instance )
+{
+    create;
+    update;
+    delete;
+
+
+}

@@ -1,0 +1,13 @@
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Employee Leave Application'
+
+define root view entity ZCJ_I_LEAVE
+  as select from zcj_leave
+{
+  key leave_id     as LeaveId,
+      employee_id  as EmployeeId,
+      from_date    as FromDate,
+      to_date      as ToDate,
+      reason       as Reason,
+      status       as Status
+}

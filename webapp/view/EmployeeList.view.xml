@@ -1,0 +1,551 @@
+<mvc:View
+    controllerName="zcj.employee.management.employeemanagement.controller.EmployeeList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page
+        id="employeePage"
+        title="Employee Management System">
+
+        <content>
+
+            <Table
+                id="employeeTable"
+                items="{/Employee}"
+                growing="true"
+                growingThreshold="20">
+
+                <headerToolbar>
+                    <Toolbar id="employeeToolbar">
+
+                        <Title
+                            id="employeeTitle"
+                            text="Employees"/>
+
+                        <ToolbarSpacer
+                            id="employeeToolbarSpacer"/>
+
+                        <Button
+                            id="addEmployeeButton"
+                            text="Add Employee"
+                            icon="sap-icon://add"
+                            type="Emphasized"
+                            press=".onOpenCreateDialog"/>
+
+                    </Toolbar>
+                </headerToolbar>
+
+                <columns>
+
+                    <Column id="employeeIdColumn">
+                        <Text
+                            id="employeeIdColumnText"
+                            text="Employee ID"/>
+                    </Column>
+
+                    <Column id="nameColumn">
+                        <Text
+                            id="nameColumnText"
+                            text="Name"/>
+                    </Column>
+
+                    <Column id="emailColumn">
+                        <Text
+                            id="emailColumnText"
+                            text="Email"/>
+                    </Column>
+
+                    <Column id="departmentColumn">
+                        <Text
+                            id="departmentColumnText"
+                            text="Department"/>
+                    </Column>
+
+                    <Column id="joiningDateColumn">
+                        <Text
+                            id="joiningDateColumnText"
+                            text="Joining Date"/>
+                    </Column>
+
+                    <Column id="actionsColumn">
+                        <Text
+                            id="actionsColumnText"
+                            text="Actions"/>
+                    </Column>
+
+                </columns>
+
+                <items>
+
+                    <ColumnListItem
+                        id="employeeListItem">
+
+                        <cells>
+
+                            <Text
+                                id="employeeIdText"
+                                text="{employee_id}"/>
+
+                            <Text
+                                id="employeeNameText"
+                                text="{name}"/>
+
+                            <Text
+                                id="employeeEmailText"
+                                text="{email}"/>
+
+                            <Text
+                                id="employeeDepartmentText"
+                                text="{department}"/>
+
+                            <Text
+                                id="employeeJoiningDateText"
+                                text="{joining_date}"/>
+
+                            <HBox
+                                id="employeeActionsBox">
+
+                                <Button
+                                    id="editEmployeeButton"
+                                    icon="sap-icon://edit"
+                                    tooltip="Edit Employee"
+                                    type="Transparent"
+                                    press=".onOpenEditDialog"/>
+
+                                <Button
+                                    id="deleteEmployeeButton"
+                                    icon="sap-icon://delete"
+                                    tooltip="Delete Employee"
+                                    type="Transparent"
+                                    press=".onDeleteEmployee"/>
+
+                            </HBox>
+
+                        </cells>
+
+                    </ColumnListItem>
+
+                </items>
+
+            </Table>
+            <Title
+            id="leaveSectionTitle"
+            text="Leave Applications"
+            level="H2"
+            class="sapUiMediumMarginTop" />
+            <Table
+    id="leaveTable"
+    items="{/Leave}"
+    growing="true"
+    growingThreshold="20"
+    width="auto">
+
+    <headerToolbar>
+    <Toolbar id="leaveToolbar">
+
+        <Title
+            id="leaveTitle"
+            text="Leave Applications"
+            level="H2" />
+
+        <ToolbarSpacer
+            id="leaveToolbarSpacer" />
+
+        <Button
+            id="applyLeaveButton"
+            text="Apply Leave"
+            icon="sap-icon://calendar"
+            type="Emphasized"
+            press=".onOpenLeaveDialog"
+             />
+
+        <SegmentedButton
+            id="leaveFilter"
+            selectedKey="ALL"
+            selectionChange=".onLeaveFilterChange">
+
+            <items>
+
+                <SegmentedButtonItem
+                    id="filterAll"
+                    key="ALL"
+                    text="All" />
+
+                <SegmentedButtonItem
+                    id="filterPending"
+                    key="PENDING"
+                    text="Pending" />
+
+                <SegmentedButtonItem
+                    id="filterGranted"
+                    key="GRANTED"
+                    text="Granted" />
+
+                <SegmentedButtonItem
+                    id="filterRejected"
+                    key="REJECTED"
+                    text="Rejected" />
+
+            </items>
+
+        </SegmentedButton>
+
+    </Toolbar>
+</headerToolbar>
+
+    <columns>
+
+        <Column id="leaveEmployeeColumn">
+            <Text
+                id="leaveEmployeeHeader"
+                text="Employee ID" />
+        </Column>
+
+        <Column id="fromDateColumn">
+            <Text
+                id="fromDateHeader"
+                text="From Date" />
+        </Column>
+
+        <Column id="toDateColumn">
+            <Text
+                id="toDateHeader"
+                text="To Date" />
+        </Column>
+
+        <Column id="reasonColumn">
+            <Text
+                id="reasonHeader"
+                text="Reason" />
+        </Column>
+
+        <Column id="statusColumn">
+            <Text
+                id="statusHeader"
+                text="Status" />
+        </Column>
+
+        <Column id="leaveActionsColumn">
+    <Text
+        id="leaveActionsHeader"
+        text="Actions" />
+</Column>
+
+    </columns>
+
+    <items>
+
+        <ColumnListItem id="leaveListItem">
+
+    <cells>
+
+        <Text
+            id="leaveEmployeeIdText"
+            text="{EmployeeId}" />
+
+        <Text
+            id="leaveFromDateText"
+            text="{FromDate}" />
+
+        <Text
+            id="leaveToDateText"
+            text="{ToDate}" />
+
+        <Text
+            id="leaveReasonText"
+            text="{Reason}" />
+
+        <Text
+            id="leaveStatusText"
+            text="{Status}" />
+
+        <HBox id="leaveActionsBox">
+
+          <Button
+        id="approveLeaveButton"
+        icon="sap-icon://accept"
+        type="Accept"
+        tooltip="Approve Leave"
+        press=".onApproveLeave"
+        visible="{= %{Status} === 'PENDING' }" />
+
+    <Button
+        id="rejectLeaveButton"
+        icon="sap-icon://decline"
+        type="Reject"
+        tooltip="Reject Leave"
+        press=".onRejectLeave"
+        visible="{= %{Status} === 'PENDING' }" />
+
+        </HBox>
+
+    </cells>
+
+</ColumnListItem>
+
+    </items>
+
+</Table>
+
+        </content>
+
+
+        <!-- CREATE DIALOG -->
+
+        <dependents>
+
+            <Dialog
+                id="createEmployeeDialog"
+                title="Create Employee"
+                contentWidth="400px">
+
+                <content>
+
+                    <VBox
+                        id="createEmployeeVBox"
+                        class="sapUiMediumMargin">
+
+                        <Label
+                            id="employeeIdLabel"
+                            text="Employee ID"
+                            labelFor="employeeIdInput"/>
+
+                        <Input
+                            id="employeeIdInput"
+                            placeholder="Enter Employee ID"
+                            class="sapUiSmallMarginBottom"/>
+
+
+                        <Label
+                            id="employeeNameLabel"
+                            text="Name"
+                            labelFor="employeeNameInput"/>
+
+                        <Input
+                            id="employeeNameInput"
+                            placeholder="Enter employee name"
+                            class="sapUiSmallMarginBottom"/>
+
+
+                        <Label
+                            id="employeeEmailLabel"
+                            text="Email"
+                            labelFor="employeeEmailInput"/>
+
+                        <Input
+                            id="employeeEmailInput"
+                            type="Email"
+                            placeholder="Enter email"
+                            class="sapUiSmallMarginBottom"/>
+
+
+                        <Label
+                            id="employeeDepartmentLabel"
+                            text="Department"
+                            labelFor="employeeDepartmentInput"/>
+
+                        <Input
+                            id="employeeDepartmentInput"
+                            placeholder="Enter department"
+                            class="sapUiSmallMarginBottom"/>
+
+
+                        <Label
+                            id="employeeJoiningDateLabel"
+                            text="Joining Date"
+                            labelFor="employeeJoiningDateInput"/>
+
+                        <DatePicker
+                            id="employeeJoiningDateInput"
+                            displayFormat="yyyy-MM-dd"
+                            valueFormat="yyyy-MM-dd"/>
+
+                    </VBox>
+
+                </content>
+
+                <beginButton>
+
+                    <Button
+                        id="createEmployeeButton"
+                        text="Create"
+                        type="Emphasized"
+                        press=".onCreateEmployee"/>
+
+                </beginButton>
+
+                <endButton>
+
+                    <Button
+                        id="cancelCreateButton"
+                        text="Cancel"
+                        press=".onCancelCreate"/>
+
+                </endButton>
+
+            </Dialog>
+
+
+            <!-- UPDATE DIALOG -->
+
+            <Dialog
+                id="editEmployeeDialog"
+                title="Edit Employee"
+                contentWidth="400px">
+
+                <content>
+
+                    <VBox
+                        id="editEmployeeVBox"
+                        class="sapUiMediumMargin">
+
+                        <Label
+                            id="editEmployeeIdLabel"
+                            text="Employee ID"/>
+
+                        <Input
+                            id="editEmployeeIdInput"
+                            editable="false"
+                            class="sapUiSmallMarginBottom"/>
+
+
+                        <Label
+                            id="editEmployeeNameLabel"
+                            text="Name"/>
+
+                        <Input
+                            id="editEmployeeNameInput"
+                            class="sapUiSmallMarginBottom"/>
+
+
+                        <Label
+                            id="editEmployeeEmailLabel"
+                            text="Email"/>
+
+                        <Input
+                            id="editEmployeeEmailInput"
+                            type="Email"
+                            class="sapUiSmallMarginBottom"/>
+
+
+                        <Label
+                            id="editEmployeeDepartmentLabel"
+                            text="Department"/>
+
+                        <Input
+                            id="editEmployeeDepartmentInput"
+                            class="sapUiSmallMarginBottom"/>
+
+
+                        <Label
+                            id="editEmployeeJoiningDateLabel"
+                            text="Joining Date"/>
+
+                        <DatePicker
+                            id="editEmployeeJoiningDateInput"
+                            displayFormat="yyyy-MM-dd"
+                            valueFormat="yyyy-MM-dd"/>
+
+                    </VBox>
+
+                </content>
+
+                <beginButton>
+
+                    <Button
+                        id="saveEmployeeButton"
+                        text="Save"
+                        type="Emphasized"
+                        press=".onUpdateEmployee"/>
+
+                </beginButton>
+
+                <endButton>
+
+                    <Button
+                        id="cancelEditButton"
+                        text="Cancel"
+                        press=".onCancelEdit"/>
+
+                </endButton>
+
+            </Dialog>
+            <Dialog
+    id="leaveDialog"
+    title="Apply for Leave"
+    contentWidth="400px">
+
+    <content>
+
+        <VBox
+            id="leaveFormVBox"
+            class="sapUiSmallMargin">
+
+            <Label
+                id="leaveEmployeeIdLabel"
+                text="Employee ID" />
+
+            <Input
+                id="leaveEmployeeIdInput"
+                placeholder="Enter Employee ID" />
+
+            <Label
+                id="leaveFromDateLabel"
+                text="From Date"
+                class="sapUiSmallMarginTop" />
+
+            <DatePicker
+                id="leaveFromDateInput"
+                placeholder="Select From Date" />
+
+            <Label
+                id="leaveToDateLabel"
+                text="To Date"
+                class="sapUiSmallMarginTop" />
+
+            <DatePicker
+                id="leaveToDateInput"
+                placeholder="Select To Date" />
+
+            <Label
+                id="leaveReasonLabel"
+                text="Reason"
+                class="sapUiSmallMarginTop" />
+
+            <Input
+                id="leaveReasonInput"
+                placeholder="Enter reason" />
+
+        </VBox>
+
+    </content>
+
+    <beginButton>
+
+        <Button
+            id="applyLeaveDialogButton"
+            text="Apply Leave"
+            type="Emphasized"
+            press=".onApplyLeave" />
+
+    </beginButton>
+
+    <endButton>
+
+        <Button
+            id="cancelLeaveDialogButton"
+            text="Cancel"
+            press=".onCancelLeave" />
+
+    </endButton>
+
+</Dialog>
+
+
+        </dependents>
+
+    </Page>
+        
+    
+
+</mvc:View>

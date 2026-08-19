@@ -1,0 +1,5 @@
+@EndUserText.label: 'Employee Management Service'
+define service ZCJ_SD_EMPLOYEE {
+  expose ZCJ_I_EMPLOYEE as Employee;
+  expose ZCJ_I_LEAVE    as Leave;
+}

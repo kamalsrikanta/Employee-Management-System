@@ -1,0 +1,23 @@
+{
+  "generationParameters": {
+    "generationDate": "Tue Aug 18 2026 04:33:31 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP Cloud)",
+    "metadataFilename": "",
+    "serviceUrl": "https://a4796127-12c7-4a21-ae82-e3ced4ab9c3d.abap.us10.hana.ondemand.com/sap/opu/odata4/sap/zcj_sb_employee_api/srvd_a2x/sap/zcj_sd_employee/0001/",
+    "appName": "employee-management",
+    "appTitle": "Employee Management System",
+    "appDescription": "Employee Management System with employee and leave management",
+    "appNamespace": "zcj.employee.management",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.148.7",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.31.0",
+    "template": "Basic V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```"
+  }
+}
